@@ -1,61 +1,92 @@
 
 package cloudcount.models;
 
+import cc.test.bridge.NoteInterface;
+import java.io.Serializable;
+import java.util.Date;
 import org.workplicity.entry.Entry;
+import org.workplicity.util.WorkDate;
 
 /**
  *
  * @author joeycarmello
  */
-public class Note extends Entry {
+public class Note implements Serializable, NoteInterface {
+
+    public static final String REPOSITORY = "notes";
     
+    private String name = "n/a";
     
     // description text for the note
-    private String label;
-    
-    // Contents of the note
-    private String note;
+    private String text = "";
     
     // 
-    private int created_by;
+    private String author = "";
     
-    // 
-    private Budget budget;
+    private Date date;
+    
     
     public Note() {
         
     }
-
-    public Budget getBudget() {
-        return budget;
+    
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public void setBudget(Budget budget) {
-        this.budget = budget;
+    @Override
+    public Date getDate() {
+        return date;
     }
 
-    public int getCreated_by() {
-        return created_by;
+    @Override
+    public String getText() {
+        return text;
     }
 
-    public void setCreated_by(int created_by) {
-        this.created_by = created_by;
+    @Override
+    public void setText(String text) {
+        this.text = text;
     }
 
-    public String getLabel() {
-        return label;
+    @Override
+    public String getAuthor() {
+        return author;
     }
 
-    public void setLabel(String label) {
-        this.label = label;
+    @Override
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
-    public String getNote() {
-        return note;
+    @Override
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public Boolean commit() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public String getRepositoryName() {
+        return Note.REPOSITORY;
+    }
+
+    @Override
+    public Integer getId() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public WorkDate getUpdateDate() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }
