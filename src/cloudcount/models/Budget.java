@@ -7,6 +7,8 @@ import cc.test.bridge.LineInterface;
 import cc.test.bridge.NoteInterface;
 import java.util.ArrayList;
 import org.workplicity.entry.Entry;
+import org.workplicity.util.Helper;
+import org.workplicity.worklet.WorkletContext;
 
 /**
  *
@@ -101,7 +103,17 @@ public class Budget extends Entry implements BudgetInterface {
 
     @Override
     public Boolean commit() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+        Boolean isSuccess = false;
+                
+        isSuccess = Helper.insert(this, this.getRepositoryName(), WorkletContext.getInstance());
+        
+        if (isSuccess) {
+            // no longer dirty
+            BridgeHelper.getHamper().clear();
+        }
+        
+        return isSuccess;
     }
 
     @Override
