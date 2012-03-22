@@ -1,87 +1,84 @@
 
 package cloudcount.models;
 
+import cc.test.bridge.LineInterface;
+import cc.test.bridge.SublineInterface;
+import java.util.ArrayList;
 import org.workplicity.entry.Entry;
 
 /**
  *
  * @author joeycarmello
  */
-public class Line extends Entry {
+public class Line extends Entry implements LineInterface {
     
-    private Budget budget;
+    public static final String REPOSITORY = "lines";
     
-    private int user_id;
+    private Integer budgetId = -1;
     
-    private int line_number;
+    private Integer number = -1;
     
-    private String name;
-    
-    private double subtotal;
-    
-    private Line parent;
-    
-    private int order;
-    
+    private String name = "n/a";
     
     public Line() {
         
     }
 
-    public Budget getBudget() {
-        return budget;
+    public Integer getBudget() {
+        return budgetId;
     }
 
-    public void setBudget(Budget budget) {
-        this.budget = budget;
+    public void setBudget(Integer budgetId) {
+        this.budgetId = budgetId;
     }
 
-    public int getLine_number() {
-        return line_number;
+    @Override
+    public Integer getNumber() {
+        return number;
     }
 
-    public void setLine_number(int line_number) {
-        this.line_number = line_number;
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }
 
-    public int getOrder() {
-        return order;
+    @Override
+    public ArrayList<SublineInterface> fetchSublines() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void setOrder(int order) {
-        this.order = order;
+    @Override
+    public SublineInterface createSubline() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public Line getParent() {
-        return parent;
+    @Override
+    public void add(SublineInterface si) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void setParent(Line parent) {
-        this.parent = parent;
+    @Override
+    public void delete(SublineInterface si) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public double getSubtotal() {
-        return subtotal;
+    @Override
+    public Boolean commit() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void setSubtotal(double subtotal) {
-        this.subtotal = subtotal;
-    }
-
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    @Override
+    public String getRepositoryName() {
+        return Line.REPOSITORY;
     }
     
     
