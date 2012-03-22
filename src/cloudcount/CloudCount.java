@@ -4,6 +4,7 @@
 /**
  *
  * @author dan
+ * THIS ONLY NEEDS TO BE RUN ONCE ON EACH NEW "INSTALLATION"
  */
 
 package cloudcount;
