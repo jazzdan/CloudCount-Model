@@ -1,5 +1,5 @@
 
-package cloudcount;
+package cloudcount.models;
 
 import org.workplicity.entry.Entry;
 
@@ -7,9 +7,9 @@ import org.workplicity.entry.Entry;
  *
  * @author joeycarmello
  */
-public class Line extends Entry {
+public class Note extends Entry {
     
-    public Line() {
+    public Note() {
         
     }
 }

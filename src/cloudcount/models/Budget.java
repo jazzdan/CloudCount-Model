@@ -1,5 +1,5 @@
 
-package cloudcount;
+package cloudcount.models;
 
 import org.workplicity.entry.Entry;
 
