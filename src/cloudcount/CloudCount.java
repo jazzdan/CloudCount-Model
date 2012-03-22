@@ -37,7 +37,8 @@ public class CloudCount {
 	NetTask.setUrlBase(url);
 	NetTask.setStoreName(name);
 	WorkletContext context = WorkletContext.getInstance();
-	boolean successful = Helper.login("admin","gazelle",context);
-	System.out.print("Did it work? " + successful);
+//	boolean successful = Helper.login("admin","gazelle",context);
+
+
 	}
 }
