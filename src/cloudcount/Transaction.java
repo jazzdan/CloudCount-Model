@@ -7,9 +7,9 @@ import org.workplicity.entry.Entry;
  *
  * @author joeycarmello
  */
-public class Attachment extends Entry {
+public class Transaction extends Entry {
     
-    public Attachment() {
+    public Transaction() {
         
     }
 }
