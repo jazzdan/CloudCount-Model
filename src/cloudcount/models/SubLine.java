@@ -3,14 +3,16 @@ package cloudcount.models;
 
 import cc.test.bridge.SublineInterface;
 import cc.test.bridge.TransactionInterface;
+import java.io.Serializable;
 import java.util.ArrayList;
 import org.workplicity.entry.Entry;
+import org.workplicity.util.WorkDate;
 
 /**
  *
  * @author joeycarmello
  */
-public class SubLine extends Entry implements SublineInterface {
+public class SubLine implements Serializable, SublineInterface {
     
     public static final String REPOSITORY = "sub_lines";
     
@@ -79,6 +81,16 @@ public class SubLine extends Entry implements SublineInterface {
     
     @Override
     public Boolean commit() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public Integer getId() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public WorkDate getUpdateDate() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     

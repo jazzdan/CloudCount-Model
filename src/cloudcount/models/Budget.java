@@ -6,7 +6,6 @@ import cc.test.bridge.BudgetInterface;
 import cc.test.bridge.LineInterface;
 import cc.test.bridge.NoteInterface;
 import java.util.ArrayList;
-import java.util.Date;
 import org.workplicity.entry.Entry;
 
 /**
@@ -15,83 +14,47 @@ import org.workplicity.entry.Entry;
  */
 public class Budget extends Entry implements BudgetInterface {
     
-    private String title;
+    public static final String REPOSITORY = "budgets";
     
     private String description;
     
-    private Date starts;
+    private ArrayList<NoteInterface> notes;
     
-    private Date ends;
-    
-    private int roll;
-    
-    private ArrayList<Note> notes;
-    
-    private ArrayList<Line> lines;
+    private ArrayList<LineInterface> lines;
             
     
     public Budget() {
         
     }
 
+    @Override
     public String getDescription() {
         return description;
     }
 
+    @Override
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public Date getEnds() {
-        return ends;
-    }
-
-    public void setEnds(Date ends) {
-        this.ends = ends;
-    }
-
-    public int getRoll() {
-        return roll;
-    }
-
-    public void setRoll(int roll) {
-        this.roll = roll;
-    }
-
-    public Date getStarts() {
-        return starts;
-    }
-
-    public void setStarts(Date starts) {
-        this.starts = starts;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     @Override
     public ArrayList<LineInterface> fetchLines(Side side) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return lines;
     }
 
     @Override
     public ArrayList<NoteInterface> fetchNotes() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return notes;
     }
 
     @Override
     public LineInterface createLine() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return new Line();
     }
 
     @Override
     public NoteInterface createNote() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return new Note();
     }
 
     @Override
@@ -141,7 +104,7 @@ public class Budget extends Entry implements BudgetInterface {
 
     @Override
     public String getRepositoryName() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return Budget.REPOSITORY;
     }
     
     
