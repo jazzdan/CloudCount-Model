@@ -16,6 +16,8 @@ public class Budget extends Entry implements BudgetInterface {
     
     public static final String REPOSITORY = "budgets";
     
+    private String name;
+    
     private String description;
     
     private ArrayList<NoteInterface> notes;
@@ -88,13 +90,13 @@ public class Budget extends Entry implements BudgetInterface {
     }
 
     @Override
-    public void setName(String string) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public String getName() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return name;
     }
 
     @Override
