@@ -18,8 +18,6 @@ import org.workplicity.worklet.WorkletContext;
  */
 public class Budget extends Entry implements BudgetInterface {
     
-    public static final String REPOSITORY = "budgets";
-    
     private String name;
     
     private String description;
@@ -126,6 +124,8 @@ public class Budget extends Entry implements BudgetInterface {
 
     @Override
     public String getRepositoryName() {
-        return Budget.REPOSITORY;
+        return "budgets";
     }
+   
+    
 }
