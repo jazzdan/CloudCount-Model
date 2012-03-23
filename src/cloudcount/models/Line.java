@@ -58,7 +58,7 @@ public class Line extends Entry implements LineInterface {
 
     @Override
     public SublineInterface createSubline() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return new SubLine();
     }
 
     @Override
