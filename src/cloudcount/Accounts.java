@@ -15,16 +15,40 @@ import org.workplicity.repos.mongo.Repository;
 import org.workplicity.util.MongoHelper;
 import org.workplicity.task.NetTask;
 
+/**
+ *
+ * @author dan
+ */
 public class Accounts extends Repository
 {
   private static final Logger logger = Logger.getLogger(Accounts.class);
+  /**
+   *
+   */
   public static final String TITLE = "Accounts";
+  /**
+   *
+   */
   public static final String KEY_USER_BASE = "system.user.";
+  /**
+   *
+   */
   public static final String KEY_PASSWORD_BASE = "accounts.password.";
+  /**
+   *
+   */
   public static final int ACCOUNT_ADMIN_ID = 0;
+  /**
+   *
+   */
   public static final int ACCOUNT_SYSTEM_ID = 1;
 
-	@Override
+  /**
+   *
+   * @param props
+   * @throws Exception
+   */
+  @Override
   public void init(Properties props)
     throws Exception
   {

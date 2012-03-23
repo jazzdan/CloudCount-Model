@@ -25,86 +25,150 @@ public class Budget extends Entry implements BudgetInterface {
     private ArrayList<NoteInterface> notes;
     private ArrayList<LineInterface> lines;
 
-    public Budget() {
+	/**
+	 *
+	 */
+	public Budget() {
     }
 
-    @Override
+	/**
+	 *
+	 * @return
+	 */
+	@Override
     public String getDescription() {
         return description;
     }
 
-    @Override
+	/**
+	 *
+	 * @param description
+	 */
+	@Override
     public void setDescription(String description) {
         this.description = description;
     }
 
-    @Override
+	/**
+	 *
+	 * @param side
+	 * @return
+	 */
+	@Override
     public ArrayList<LineInterface> fetchLines(Side side) {
         return lines;
     }
 
-    @Override
+	/**
+	 *
+	 * @return
+	 */
+	@Override
     public ArrayList<NoteInterface> fetchNotes() {
         return notes;
     }
 
-    @Override
+	/**
+	 *
+	 * @return
+	 */
+	@Override
     public LineInterface createLine() {
         return new Line();
     }
 
-    @Override
+	/**
+	 *
+	 * @return
+	 */
+	@Override
     public NoteInterface createNote() {
         return new Note();
     }
 
-    @Override
+	/**
+	 *
+	 * @param note
+	 */
+	@Override
     public void add(NoteInterface note) {
         BridgeHelper.getHamper().put(note, State.CREATE);
         BridgeHelper.getHamper().put(this, State.UPDATE);
     }
 
-    @Override
+	/**
+	 *
+	 * @param note
+	 */
+	@Override
     public void delete(NoteInterface note) {
         BridgeHelper.getHamper().put(note, State.DELETE);
         BridgeHelper.getHamper().put(this, State.UPDATE);
     }
 
-    @Override
+	/**
+	 *
+	 * @param note
+	 */
+	@Override
     public void update(NoteInterface note) {
         BridgeHelper.getHamper().put(note, State.UPDATE);
         BridgeHelper.getHamper().put(this, State.UPDATE);
     }
 
-    @Override
+	/**
+	 *
+	 * @param line
+	 */
+	@Override
     public void add(LineInterface line) {
         BridgeHelper.getHamper().put(line, State.CREATE);
         BridgeHelper.getHamper().put(this, State.UPDATE);
     }
 
-    @Override
+	/**
+	 *
+	 * @param line
+	 */
+	@Override
     public void delete(LineInterface line) {
         BridgeHelper.getHamper().put(line, State.DELETE);
         BridgeHelper.getHamper().put(this, State.UPDATE);
     }
 
-    @Override
+	/**
+	 *
+	 * @param line
+	 */
+	@Override
     public void update(LineInterface line) {
         BridgeHelper.getHamper().put(line, State.UPDATE);
         BridgeHelper.getHamper().put(this, State.UPDATE);
     }
 
-    @Override
+	/**
+	 *
+	 * @param name
+	 */
+	@Override
     public void setName(String name) {
         this.name = name;
     }
 
-    @Override
+	/**
+	 *
+	 * @return
+	 */
+	@Override
     public String getName() {
         return name;
     }
 
-    @Override
+	/**
+	 *
+	 * @return
+	 */
+	@Override
     public Boolean commit() {
 
         Boolean isSuccess = false;
@@ -139,12 +203,12 @@ public class Budget extends Entry implements BudgetInterface {
             boolean isDirty = BridgeHelper.getHamper().containsKey(this);
 
             if (isDirty) {
-                
+
                 try {
                     // write the current budget through
                     int id = MongoHelper.insert(this, NetTask.getStoreName(), this.getRepositoryName());
                     isSuccess = id != -1;
-                    
+
                     if (isSuccess) {
                         // no longer dirty
                         BridgeHelper.getHamper().clear();
@@ -158,30 +222,30 @@ public class Budget extends Entry implements BudgetInterface {
 
         return isSuccess;
     }
-    
+
     /* handles State == CREATE
-     * 
+     *
      */
     private boolean handleCreates(BridgeInterface bridge) {
        boolean isSuccess = bridge.commit();
-       
+
        if (isSuccess) {
-           
+
            if (bridge instanceof LineInterface) {
                Line line = (Line) bridge;
                this.lines.add(line);
-               
+
            } else if (bridge instanceof NoteInterface) {
                this.notes.add((Note) bridge);
            }
-           
+
            BridgeHelper.getHamper().put(this, State.CREATE);
        }
-       
+
        return isSuccess;
-       
+
     }
-    
+
     /*
      * handles State == UPDATE
      */
@@ -189,30 +253,34 @@ public class Budget extends Entry implements BudgetInterface {
         BridgeHelper.getHamper().put(this, State.UPDATE);
         return bridge.commit();
     }
-    
+
     /*
      * handles State == DELETE
      */
     private boolean handleDeletes(BridgeInterface bridge) {
-        
+
         if (bridge instanceof LineInterface) {
-            
+
             this.lines.remove((Line) bridge);
-            
+
         } else if (bridge instanceof NoteInterface) {
-            
+
             this.notes.remove((Note) bridge);
         }
-        
+
         BridgeHelper.getHamper().put(this, State.DELETE);
-        
+
         bridge.commit();
-        
+
         return true;
     }
-            
 
-    @Override
+
+	/**
+	 *
+	 * @return
+	 */
+	@Override
     public String getRepositoryName() {
         return repositoryName;
     }
@@ -221,6 +289,10 @@ public class Budget extends Entry implements BudgetInterface {
      * Required for bean pattern / serialization
      *
      */
-    public void setRepositoryName(String name) {
+	/**
+	 *
+	 * @param name
+	 */
+	public void setRepositoryName(String name) {
     }
 }

@@ -15,41 +15,75 @@ import org.workplicity.util.MongoHelper;
  */
 public class Line extends Entry implements LineInterface {
 
+		/**
+		 *
+		 */
 		public static final String REPOSITORY = "lines";
 		private Integer budgetId = -1;
 		private Integer number = -1;
 		private String name = "n/a";
 
+		/**
+		 *
+		 */
 		public Line() {
 		}
 
+		/**
+		 *
+		 * @return
+		 */
 		public Integer getBudget() {
 				return budgetId;
 		}
 
+		/**
+		 *
+		 * @param budgetId
+		 */
 		public void setBudget(Integer budgetId) {
 				this.budgetId = budgetId;
 		}
 
+		/**
+		 *
+		 * @return
+		 */
 		@Override
 		public Integer getNumber() {
 				return number;
 		}
 
+		/**
+		 *
+		 * @param number
+		 */
 		public void setNumber(Integer number) {
 				this.number = number;
 		}
 
+		/**
+		 *
+		 * @return
+		 */
 		@Override
 		public String getName() {
 				return name;
 		}
 
+		/**
+		 *
+		 * @param name
+		 */
 		@Override
 		public void setName(String name) {
 				this.name = name;
 		}
 
+		/**
+		 *
+		 * @return
+		 */
 		@Override
 		public ArrayList<SublineInterface> fetchSublines() {
 				BasicDBObject query = new BasicDBObject();
@@ -64,17 +98,29 @@ public class Line extends Entry implements LineInterface {
 				return null;
 		}
 
+		/**
+		 *
+		 * @return
+		 */
 		@Override
 		public SublineInterface createSubline() {
 				return new SubLine();
 		}
 
+		/**
+		 *
+		 * @param si
+		 */
 		@Override
 		public void add(SublineInterface si) {
 				SubLine subline = (SubLine)si;
 				subline.setParent(this);
 		}
 
+		/**
+		 *
+		 * @param si
+		 */
 		@Override
 		public void delete(SublineInterface si) {
 			SubLine subline = (SubLine)si;
@@ -86,6 +132,10 @@ public class Line extends Entry implements LineInterface {
 			}
 		}
 
+		/**
+		 *
+		 * @return
+		 */
 		@Override
 		public Boolean commit() {
 				try {
@@ -102,6 +152,10 @@ public class Line extends Entry implements LineInterface {
 				return true;
 		}
 
+		/**
+		 *
+		 * @return
+		 */
 		@Override
 		public String getRepositoryName() {
 				return Line.REPOSITORY;

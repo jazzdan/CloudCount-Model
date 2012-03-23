@@ -10,58 +10,96 @@ import org.workplicity.entry.Entry;
  * @author joeycarmello
  */
 public class Transaction extends Entry implements TransactionInterface {
-    
-    public static final String REPOSITORY = "transactions";
-    
+
+		/**
+		 *
+		 */
+		public static final String REPOSITORY = "transactions";
+
     private String name;
-    
+
     private Date date;
-    
+
     private Double amount;
-   
-    public Transaction() {
-        
+
+	/**
+	 *
+	 */
+	public Transaction() {
+
     }
 
-    @Override
+	/**
+	 *
+	 * @return
+	 */
+	@Override
     public Double getAmount() {
         return amount;
     }
 
-    @Override
+	/**
+	 *
+	 * @param amount
+	 */
+	@Override
     public void setAmount(Double amount) {
         this.amount = amount;
     }
 
-    @Override
+	/**
+	 *
+	 * @return
+	 */
+	@Override
     public Date getDate() {
         return date;
     }
 
-    @Override
+	/**
+	 *
+	 * @param date
+	 */
+	@Override
     public void setDate(Date date) {
         this.date = date;
     }
 
-    @Override
+	/**
+	 *
+	 * @param name
+	 */
+	@Override
     public void setName(String name) {
         this.name = name;
     }
 
-    @Override
+	/**
+	 *
+	 * @return
+	 */
+	@Override
     public String getName() {
         return this.name;
     }
 
-    @Override
+	/**
+	 *
+	 * @return
+	 */
+	@Override
     public Boolean commit() {
         return true;
     }
 
-    @Override
+	/**
+	 *
+	 * @return
+	 */
+	@Override
     public String getRepositoryName() {
         return Transaction.REPOSITORY;
     }
-    
-    
+
+
 }

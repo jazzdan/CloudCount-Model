@@ -12,15 +12,19 @@ import cc.test.bridge.BudgetInterface;
  */
 public class BudgetFactory implements BudgetFactoryInterface {
 
-    @Override
+		/**
+		 *
+		 * @return
+		 */
+		@Override
     public BudgetInterface create() {
-        
+
         Budget budget = new Budget();
-        
+
         BridgeHelper.getHamper().put(budget, State.CREATE);
-        
+
         return budget;
     }
 
 
-}  
+}

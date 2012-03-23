@@ -15,80 +15,134 @@ import org.workplicity.util.WorkDate;
  */
 public class Note implements Serializable, NoteInterface {
 
-    public static final String REPOSITORY = "notes";
-    
+		/**
+		 *
+		 */
+		public static final String REPOSITORY = "notes";
+
     private String name = "n/a";
-    
+
     // description text for the note
     private String text = "";
-    
-    // 
+
+    //
     private String author = "";
-    
+
     private Date date;
-    
-    
-    public Note() {
-        
+
+
+	/**
+	 *
+	 */
+	public Note() {
+
     }
-    
-    public void setDate(Date date) {
+
+	/**
+	 *
+	 * @param date
+	 */
+	public void setDate(Date date) {
         this.date = date;
     }
 
-    @Override
+	/**
+	 *
+	 * @return
+	 */
+	@Override
     public Date getDate() {
         return date;
     }
 
-    @Override
+	/**
+	 *
+	 * @return
+	 */
+	@Override
     public String getText() {
         return text;
     }
 
-    @Override
+	/**
+	 *
+	 * @param text
+	 */
+	@Override
     public void setText(String text) {
         this.text = text;
     }
 
-    @Override
+	/**
+	 *
+	 * @return
+	 */
+	@Override
     public String getAuthor() {
         return author;
     }
 
-    @Override
+	/**
+	 *
+	 * @param author
+	 */
+	@Override
     public void setAuthor(String author) {
         this.author = author;
     }
 
-    @Override
+	/**
+	 *
+	 * @param name
+	 */
+	@Override
     public void setName(String name) {
         this.name = name;
     }
 
-    @Override
+	/**
+	 *
+	 * @return
+	 */
+	@Override
     public String getName() {
         return name;
     }
 
-    @Override
+	/**
+	 *
+	 * @return
+	 */
+	@Override
     public Boolean commit() {
         return true;
     }
 
-    @Override
+	/**
+	 *
+	 * @return
+	 */
+	@Override
     public String getRepositoryName() {
         return Note.REPOSITORY;
     }
 
-    @Override
+	/**
+	 *
+	 * @return
+	 */
+	@Override
     public Integer getId() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
+	/**
+	 *
+	 * @return
+	 */
+	@Override
     public WorkDate getUpdateDate() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+
 }

@@ -23,9 +23,18 @@ import com.mongodb.DBCollection;
 import java.util.*;
 import org.workplicity.util.MongoHelper;
 
+/**
+ *
+ * @author dan
+ */
 public class CloudCount {
 
-	public static void main(String[] args) throws Exception {
+		/**
+		 *
+		 * @param args
+		 * @throws Exception
+		 */
+		public static void main(String[] args) throws Exception {
 	// accounts thing...
 	Accounts acc = new Accounts();
 
@@ -51,17 +60,17 @@ public class CloudCount {
 	Budget b = (Budget) bf.create();
 	b.setName("derp");
         b.add(new Line());
-        
+
 	Integer insert = MongoHelper.insert(b, "ccmodel", b.getRepositoryName());
 	System.out.println(insert);
-        
+
         BasicDBObject prod = new BasicDBObject();
-        
+
         prod.put("entry.id", insert);
-        
+
  //       Helper.fetch(b.getRepositoryName(), 2, WorkletContext.getInstance());
         ArrayList items = MongoHelper.query(prod, "ccmodel", "budgets");
-        
+
         for (Object budget : items) {
              System.out.println(budget);
               System.out.println(((Budget) budget).getName());
