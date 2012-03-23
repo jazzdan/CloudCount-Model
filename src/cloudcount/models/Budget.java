@@ -8,6 +8,7 @@ import cc.test.bridge.BudgetInterface;
 import cc.test.bridge.LineInterface;
 import cc.test.bridge.NoteInterface;
 import java.util.ArrayList;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.workplicity.entry.Entry;
 import org.workplicity.util.Helper;
 import org.workplicity.worklet.WorkletContext;
@@ -17,6 +18,8 @@ import org.workplicity.worklet.WorkletContext;
  * @author joeycarmello
  */
 public class Budget extends Entry implements BudgetInterface {
+    
+    private final String repositoryName = "budgets";
     
     private String name;
     
@@ -124,7 +127,11 @@ public class Budget extends Entry implements BudgetInterface {
 
     @Override
     public String getRepositoryName() {
-        return "budgets";
+        return repositoryName;
+    }
+    
+    public void setRepositoryName(String name) {
+        
     }
    
     

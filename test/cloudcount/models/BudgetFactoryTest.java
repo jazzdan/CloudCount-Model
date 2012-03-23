@@ -11,6 +11,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.workplicity.task.NetTask;
+import org.workplicity.util.MongoHelper;
+import org.workplicity.worklet.WorkletContext;
 
 /**
  *
@@ -19,14 +22,20 @@ import static org.junit.Assert.*;
 public class BudgetFactoryTest {
 
 	public BudgetFactoryTest() {
+           
 	}
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {
+            String url = "http://localhost:8080/netprevayle/task";
+            String name = "ccmodel";
+            NetTask.setUrlBase(url);
+            NetTask.setStoreName(name);
 	}
 
 	@AfterClass
 	public static void tearDownClass() throws Exception {
+            
 	}
 
 	@Before
@@ -36,18 +45,19 @@ public class BudgetFactoryTest {
 	@After
 	public void tearDown() {
 	}
+        
+        @Test
+        public void testCreateBudgetItem() throws Exception {
+            WorkletContext context = WorkletContext.getInstance();
+        
+            BudgetFactory bf = new BudgetFactory();
+            Budget b = (Budget) bf.create();
+            b.setName("derp");
+            b.add(new Line());
 
-	/**
-	 * Test of create method, of class BudgetFactory.
-	 */
-	@Test
-	public void testCreate() {
-		System.out.println("create");
-		BudgetFactory instance = new BudgetFactory();
-		BudgetInterface expResult = null;
-		BudgetInterface result = instance.create();
-		assertEquals(expResult, result);
-		// TODO review the generated test code and remove the default call to fail.
-		fail("The test case is a prototype.");
-	}
+            Integer insertId = MongoHelper.insert(b, "ccmodel", b.getRepositoryName());
+            assertNotSame(insertId, Integer.valueOf(-1));
+            
+            MongoHelper.delete(b, "ccmodel", b.getRepositoryName());
+        }
 }

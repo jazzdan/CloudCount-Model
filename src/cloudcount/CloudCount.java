@@ -18,6 +18,7 @@ import cloudcount.models.BudgetFactory;
 import cloudcount.models.Budget;
 import cloudcount.models.Line;
 import com.mongodb.BasicDBObject;
+import com.mongodb.DBCollection;
 
 import java.util.*;
 import org.workplicity.util.MongoHelper;
@@ -56,6 +57,14 @@ public class CloudCount {
         
         BasicDBObject prod = new BasicDBObject();
         
-        System.out.println(MongoHelper.query(prod, "ccmodel", b.getRepositoryName()));
+        prod.put("entry.id", insert);
+        
+ //       Helper.fetch(b.getRepositoryName(), 2, WorkletContext.getInstance());
+        ArrayList items = MongoHelper.query(prod, "ccmodel", "budgets");
+        
+        for (Object budget : items) {
+             System.out.println(budget);
+              System.out.println(((Budget) budget).getName());
 	}
+    }
 }
