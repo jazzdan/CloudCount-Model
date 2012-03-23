@@ -55,7 +55,7 @@ public class Transaction extends Entry implements TransactionInterface {
 
     @Override
     public Boolean commit() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return true;
     }
 
     @Override

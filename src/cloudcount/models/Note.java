@@ -5,6 +5,8 @@ import cc.test.bridge.NoteInterface;
 import java.io.Serializable;
 import java.util.Date;
 import org.workplicity.entry.Entry;
+import org.workplicity.task.NetTask;
+import org.workplicity.util.MongoHelper;
 import org.workplicity.util.WorkDate;
 
 /**
@@ -71,7 +73,7 @@ public class Note implements Serializable, NoteInterface {
 
     @Override
     public Boolean commit() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return true;
     }
 
     @Override
