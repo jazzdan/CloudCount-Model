@@ -14,6 +14,9 @@ import org.workplicity.task.NetTask;
 import org.workplicity.util.Helper;
 import org.workplicity.worklet.WorkletContext;
 
+import cloudcount.models.BudgetFactory;
+import cloudcount.models.Budget;
+
 import java.util.*;
 
 public class CloudCount {
@@ -38,8 +41,12 @@ public class CloudCount {
 	NetTask.setUrlBase(url);
 	NetTask.setStoreName(name);
 	WorkletContext context = WorkletContext.getInstance();
-//	boolean successful = Helper.login("admin","gazelle",context);
+	boolean successful = Helper.login("admin","gazelle",context);
 
-
+	BudgetFactory bf = new BudgetFactory();
+	Budget b = (Budget) bf.create();
+	b.setName("derp");
+	boolean insert = Helper.insert(b, "budgets", context);
+	System.out.println(insert);
 	}
 }
