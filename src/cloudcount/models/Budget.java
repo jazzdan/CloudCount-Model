@@ -1,7 +1,9 @@
 
 package cloudcount.models;
 
+import cc.test.bridge.BridgeConstants;
 import cc.test.bridge.BridgeConstants.Side;
+import cc.test.bridge.BridgeConstants.State;
 import cc.test.bridge.BudgetInterface;
 import cc.test.bridge.LineInterface;
 import cc.test.bridge.NoteInterface;
@@ -62,33 +64,39 @@ public class Budget extends Entry implements BudgetInterface {
     }
 
     @Override
-    public void add(NoteInterface ni) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void add(NoteInterface note) {
+        BridgeHelper.getHamper().put(note, State.CREATE);
+        BridgeHelper.getHamper().put(this, State.UPDATE);
     }
 
     @Override
-    public void delete(NoteInterface ni) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void delete(NoteInterface note) {
+        BridgeHelper.getHamper().put(note, State.DELETE);
+        BridgeHelper.getHamper().put(this, State.UPDATE);
+    }
+    
+    @Override
+    public void update(NoteInterface note) {
+        BridgeHelper.getHamper().put(note, State.UPDATE);
+        BridgeHelper.getHamper().put(this, State.UPDATE);
     }
 
     @Override
-    public void add(LineInterface li) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void add(LineInterface line) {
+        BridgeHelper.getHamper().put(line, State.CREATE);
+        BridgeHelper.getHamper().put(this, State.UPDATE);
     }
 
     @Override
-    public void delete(LineInterface li) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void delete(LineInterface line) {
+        BridgeHelper.getHamper().put(line, State.DELETE);
+        BridgeHelper.getHamper().put(this, State.UPDATE);
     }
 
     @Override
-    public void update(LineInterface li) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void update(NoteInterface ni) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void update(LineInterface line) {
+        BridgeHelper.getHamper().put(line, State.UPDATE);
+        BridgeHelper.getHamper().put(this, State.UPDATE);
     }
 
     @Override
@@ -120,6 +128,4 @@ public class Budget extends Entry implements BudgetInterface {
     public String getRepositoryName() {
         return Budget.REPOSITORY;
     }
-    
-    
 }
