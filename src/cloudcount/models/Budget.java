@@ -27,13 +27,14 @@ public class Budget extends Entry implements BudgetInterface {
 
 	/**
 	 *
+         * Default Constructor
 	 */
 	public Budget() {
     }
 
 	/**
 	 *
-	 * @return
+	 * @return description
 	 */
 	@Override
     public String getDescription() {
@@ -61,7 +62,7 @@ public class Budget extends Entry implements BudgetInterface {
 
 	/**
 	 *
-	 * @return
+	 * @return a list of embedded notes
 	 */
 	@Override
     public ArrayList<NoteInterface> fetchNotes() {
@@ -70,7 +71,7 @@ public class Budget extends Entry implements BudgetInterface {
 
 	/**
 	 *
-	 * @return
+	 * @return a new Line instance
 	 */
 	@Override
     public LineInterface createLine() {
@@ -79,7 +80,7 @@ public class Budget extends Entry implements BudgetInterface {
 
 	/**
 	 *
-	 * @return
+	 * @return a new Note instance
 	 */
 	@Override
     public NoteInterface createNote() {
@@ -88,6 +89,7 @@ public class Budget extends Entry implements BudgetInterface {
 
 	/**
 	 *
+         * Sets the note to dirty for creation
 	 * @param note
 	 */
 	@Override
@@ -98,6 +100,7 @@ public class Budget extends Entry implements BudgetInterface {
 
 	/**
 	 *
+         * Sets the note up to be deleted
 	 * @param note
 	 */
 	@Override
@@ -108,6 +111,7 @@ public class Budget extends Entry implements BudgetInterface {
 
 	/**
 	 *
+         * Sets the note up to be updated
 	 * @param note
 	 */
 	@Override
@@ -118,6 +122,7 @@ public class Budget extends Entry implements BudgetInterface {
 
 	/**
 	 *
+         * Sets the line up to be created
 	 * @param line
 	 */
 	@Override
@@ -128,6 +133,7 @@ public class Budget extends Entry implements BudgetInterface {
 
 	/**
 	 *
+         * Sets the line up to be deleted
 	 * @param line
 	 */
 	@Override
@@ -138,6 +144,7 @@ public class Budget extends Entry implements BudgetInterface {
 
 	/**
 	 *
+         * sets the line up to be updated
 	 * @param line
 	 */
 	@Override
@@ -157,7 +164,7 @@ public class Budget extends Entry implements BudgetInterface {
 
 	/**
 	 *
-	 * @return
+	 * @return name of budget
 	 */
 	@Override
     public String getName() {
@@ -166,7 +173,8 @@ public class Budget extends Entry implements BudgetInterface {
 
 	/**
 	 *
-	 * @return
+         * Depth-first insert of embedded and linked collections
+	 * @return boolean for status of commit
 	 */
 	@Override
     public Boolean commit() {
@@ -278,7 +286,7 @@ public class Budget extends Entry implements BudgetInterface {
 
 	/**
 	 *
-	 * @return
+	 * @return the repositoryName
 	 */
 	@Override
     public String getRepositoryName() {

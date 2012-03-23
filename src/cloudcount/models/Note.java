@@ -1,4 +1,3 @@
-
 package cloudcount.models;
 
 import cc.test.bridge.NoteInterface;
@@ -15,134 +14,128 @@ import org.workplicity.util.WorkDate;
  */
 public class Note implements Serializable, NoteInterface {
 
-		/**
-		 *
-		 */
-		public static final String REPOSITORY = "notes";
-
+    /**
+     *
+     */
+    public static final String REPOSITORY = "notes";
     private String name = "n/a";
-
     // description text for the note
     private String text = "";
-
     //
     private String author = "";
-
     private Date date;
 
-
-	/**
-	 *
-	 */
-	public Note() {
-
+    /**
+     *
+     * Default constructor
+     */
+    public Note() {
     }
 
-	/**
-	 *
-	 * @param date
-	 */
-	public void setDate(Date date) {
+    /**
+     *
+     * @param date
+     */
+    public void setDate(Date date) {
         this.date = date;
     }
 
-	/**
-	 *
-	 * @return
-	 */
-	@Override
+    /**
+     *
+     * @return date
+     */
+    @Override
     public Date getDate() {
         return date;
     }
 
-	/**
-	 *
-	 * @return
-	 */
-	@Override
+    /**
+     *
+     * @return text
+     */
+    @Override
     public String getText() {
         return text;
     }
 
-	/**
-	 *
-	 * @param text
-	 */
-	@Override
+    /**
+     *
+     * @param text
+     */
+    @Override
     public void setText(String text) {
         this.text = text;
     }
 
-	/**
-	 *
-	 * @return
-	 */
-	@Override
+    /**
+     *
+     * @return author
+     */
+    @Override
     public String getAuthor() {
         return author;
     }
 
-	/**
-	 *
-	 * @param author
-	 */
-	@Override
+    /**
+     *
+     * @param author
+     */
+    @Override
     public void setAuthor(String author) {
         this.author = author;
     }
 
-	/**
-	 *
-	 * @param name
-	 */
-	@Override
+    /**
+     *
+     * @param name
+     */
+    @Override
     public void setName(String name) {
         this.name = name;
     }
 
-	/**
-	 *
-	 * @return
-	 */
-	@Override
+    /**
+     *
+     * @return name
+     */
+    @Override
     public String getName() {
         return name;
     }
 
-	/**
-	 *
-	 * @return
-	 */
-	@Override
+    /**
+     *
+     * @return true for commit 
+     */
+    @Override
     public Boolean commit() {
         return true;
     }
 
-	/**
-	 *
-	 * @return
-	 */
-	@Override
+    /**
+     *
+     * @return respositoryName
+     */
+    @Override
     public String getRepositoryName() {
         return Note.REPOSITORY;
     }
 
-	/**
-	 *
-	 * @return
-	 */
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
     public Integer getId() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-	/**
-	 *
-	 * @return
-	 */
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
     public WorkDate getUpdateDate() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
 }
