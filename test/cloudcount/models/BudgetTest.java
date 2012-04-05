@@ -23,7 +23,7 @@ import org.workplicity.worklet.WorkletContext;
  * @author dan
  */
 public class BudgetTest {
-	
+
     public BudgetTest() {
     }
 
@@ -50,24 +50,25 @@ public class BudgetTest {
     @Test
     public void testCreateQueryThenDeleteBudgetItem() throws Exception {
         WorkletContext context = WorkletContext.getInstance();
-        
-        BudgetFactory bf = new BudgetFactory();
-	Budget b = (Budget) bf.create();
-	b.setName("derp");
+
+     	BudgetFactory bf = new BudgetFactory();
+		Budget b = (Budget) bf.create();
+		b.setName("derp");
         b.add(new Line());
-        
-	Integer insertId = MongoHelper.insert(b, "ccmodel", b.getRepositoryName());
-        
+
+		Integer insertId = MongoHelper.insert(b, "ccmodel", b.getRepositoryName());
+
         BasicDBObject criteria = new BasicDBObject();
-        
+
         criteria.put("entry.id", insertId);
-        
+
         ArrayList items = MongoHelper.query(criteria, "ccmodel", "budgets");
-        
+
         assertEquals(items.size(), 1);
-        
+
         assertEquals(((Budget)items.get(0)).getName(), "derp");
-        
+
         MongoHelper.delete(b, "ccmodel", b.getRepositoryName());
     }
+
 }
