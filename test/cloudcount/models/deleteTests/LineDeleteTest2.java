@@ -61,12 +61,12 @@ public class LineDeleteTest2 {
         BasicDBObject criteria = new BasicDBObject();
         criteria.put("entry.id", insertId);
         ArrayList items = MongoHelper.query(criteria, "ccmodel", l.getRepositoryName(), true);
-        Double count1 = (Double)items.get(0);
+        int count1 = (Integer)items.get(0);
 
         MongoHelper.delete(l, "ccmodel", l.getRepositoryName());
 
         ArrayList items2 = MongoHelper.query(criteria, "ccmodel", l.getRepositoryName(), true);
-        Double count2 = (Double)items2.get(0);
+        int count2 = (Integer)items2.get(0);
 
         count1 -= 1;
         assertEquals(count1, count2);
