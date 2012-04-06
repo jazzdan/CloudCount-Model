@@ -45,7 +45,7 @@ public class LineDeleteTest1 {
     }
 
     /**
-     * Tests that delete actually removes a line since querying does not find
+     * Tests that delete makes it impossible to query for the same Line again
      * the object
      *
      * @param args

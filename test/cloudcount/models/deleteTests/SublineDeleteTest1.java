@@ -45,6 +45,11 @@ public class SublineDeleteTest1 {
     public void tearDown() {
     }
 
+    /**
+     * Tests that delete makes it impossible to query for the same SubLine again
+     * @param args
+     * @throws Exception 
+     */
     @Test
     public static void main(String[] args) throws Exception {
         WorkletContext context = WorkletContext.getInstance();

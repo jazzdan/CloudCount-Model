@@ -45,7 +45,7 @@ public class BudgetDeleteTest1 {
     }
 
     /**
-     * Tests that delete actually removes the item from the database since we
+     * Tests that delete makes it impossible to query for the same Budget again
      * cannot query for it
      *
      * @param args
