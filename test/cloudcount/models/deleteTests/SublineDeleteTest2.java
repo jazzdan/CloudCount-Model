@@ -45,6 +45,11 @@ public class SublineDeleteTest2 {
     public void tearDown() {
     }
 
+    /**
+     * Tests that delete changes the count of SubLines by 1
+     * @param args
+     * @throws Exception 
+     */
     @Test
     public static void main(String[] args) throws Exception {
         WorkletContext context = WorkletContext.getInstance();

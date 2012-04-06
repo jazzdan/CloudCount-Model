@@ -45,7 +45,7 @@ public class BudgetDeleteTest2 {
     }
 
     /**
-     * Tests that the count of Budgets in the database decreases after a delete
+     * Tests that the count of Budgets in the database decreases by 1 after a delete
      *
      * @param args
      * @throws Exception

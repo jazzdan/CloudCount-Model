@@ -45,7 +45,7 @@ public class LineDeleteTest2 {
     }
 
     /**
-     * Tests that delete changes the count by 1
+     * Tests that delete changes the count of Lines by 1
      * @param args
      * @throws Exception 
      */
