@@ -18,7 +18,7 @@ import org.workplicity.worklet.WorkletContext;
  * @author joeycarmello
  */
 public class LineDeleteTest0 {
-    
+
     public LineDeleteTest0() {
     }
 
@@ -33,28 +33,33 @@ public class LineDeleteTest0 {
     @AfterClass
     public static void tearDownClass() throws Exception {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
-    
-    
-   @Test
-        public static void main(String[] args) throws Exception {
-            WorkletContext context = WorkletContext.getInstance();
-        
-            BudgetFactory bf = new BudgetFactory();
-            Budget b = (Budget) bf.create();
-            b.setName("derp");
-            b.add(new Line());
 
-            Integer insertId = MongoHelper.insert(b, "ccmodel", b.getRepositoryName());
-            assertNotSame(insertId, Integer.valueOf(-1));
-            
-            MongoHelper.delete(b, "ccmodel", b.getRepositoryName());
-        }
+    /**
+     * Tests that delete on a line returns the id of the line object that was
+     * deleted
+     *
+     * @param args
+     * @throws Exception
+     */
+    @Test
+    public static void main(String[] args) throws Exception {
+        WorkletContext context = WorkletContext.getInstance();
+
+        Line l = new Line();
+        l.setNumber(1);
+
+        Integer insertId = MongoHelper.insert(l, "ccmodel", l.getRepositoryName());
+
+        Integer deleteId = MongoHelper.delete(l, "ccmodel", l.getRepositoryName());
+
+        assertEquals(deleteId, insertId);
+    }
 }
