@@ -18,7 +18,7 @@ import org.workplicity.worklet.WorkletContext;
  * @author joeycarmello
  */
 public class LineCreateTest2 {
-    
+
     public LineCreateTest2() {
     }
 
@@ -33,15 +33,15 @@ public class LineCreateTest2 {
     @AfterClass
     public static void tearDownClass() throws Exception {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
-    
+
     /**
      * Tests that inserting two lines results in two separate IDs
      *
@@ -49,7 +49,7 @@ public class LineCreateTest2 {
      * @throws Exception
      */
     @Test
-    public static void main(String[] args) throws Exception {
+    public void main() throws Exception {
         WorkletContext context = WorkletContext.getInstance();
 
         Line l = new Line();
@@ -57,7 +57,7 @@ public class LineCreateTest2 {
 
         Integer insertId = MongoHelper.insert(l, "ccmodel", l.getRepositoryName());
         assertNotSame(insertId, Integer.valueOf(-1));
-        
+
         Line l2 = new Line();
         l2.setNumber(3);
 

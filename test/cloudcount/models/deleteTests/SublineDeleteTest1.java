@@ -48,10 +48,10 @@ public class SublineDeleteTest1 {
     /**
      * Tests that delete makes it impossible to query for the same SubLine again
      * @param args
-     * @throws Exception 
+     * @throws Exception
      */
     @Test
-    public static void main(String[] args) throws Exception {
+    public void main() throws Exception {
         WorkletContext context = WorkletContext.getInstance();
 
         SubLine sl = new SubLine();

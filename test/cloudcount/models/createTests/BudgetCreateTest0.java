@@ -25,7 +25,7 @@ import org.workplicity.worklet.WorkletContext;
 public class BudgetCreateTest0 {
 
 	public BudgetCreateTest0() {
-           
+
 	}
 
 	@BeforeClass
@@ -38,7 +38,7 @@ public class BudgetCreateTest0 {
 
 	@AfterClass
 	public static void tearDownClass() throws Exception {
-            
+
 	}
 
 	@Before
@@ -48,16 +48,16 @@ public class BudgetCreateTest0 {
 	@After
 	public void tearDown() {
 	}
-        
+
         /**
-         * Tests that insert returns a non-negative -1 value 
+         * Tests that insert returns a non-negative -1 value
          * @param args
-         * @throws Exception 
+         * @throws Exception
          */
         @Test
-        public static void main(String[] args) throws Exception {
+        public void main() throws Exception {
             WorkletContext context = WorkletContext.getInstance();
-        
+
             BudgetFactory bf = new BudgetFactory();
             Budget b = (Budget) bf.create();
             b.setName("derp");
@@ -65,7 +65,7 @@ public class BudgetCreateTest0 {
 
             Integer insertId = MongoHelper.insert(b, "ccmodel", b.getRepositoryName());
             assertNotSame(insertId, Integer.valueOf(-1));
-            
+
             MongoHelper.delete(b, "ccmodel", b.getRepositoryName());
         }
 }

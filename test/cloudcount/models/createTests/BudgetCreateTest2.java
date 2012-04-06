@@ -48,7 +48,7 @@ public class BudgetCreateTest2 {
      * @throws Exception
      */
     @Test
-    public static void main(String[] args) throws Exception {
+    public void main() throws Exception {
         WorkletContext context = WorkletContext.getInstance();
 
         BudgetFactory bf = new BudgetFactory();
@@ -57,7 +57,7 @@ public class BudgetCreateTest2 {
 
         Integer insertId = MongoHelper.insert(b, "ccmodel", b.getRepositoryName());
         assertNotSame(insertId, Integer.valueOf(-1));
-        
+
         Budget b2 = (Budget) bf.create();
         b2.setName("derp2");
 

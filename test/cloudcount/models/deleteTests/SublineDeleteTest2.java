@@ -48,10 +48,10 @@ public class SublineDeleteTest2 {
     /**
      * Tests that delete changes the count of SubLines by 1
      * @param args
-     * @throws Exception 
+     * @throws Exception
      */
     @Test
-    public static void main(String[] args) throws Exception {
+    public void main() throws Exception {
         WorkletContext context = WorkletContext.getInstance();
 
         SubLine sl = new SubLine();

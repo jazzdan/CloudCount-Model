@@ -27,7 +27,7 @@ import org.workplicity.worklet.WorkletContext;
 public class BudgetUpdateTest0 {
 
 	public BudgetUpdateTest0() {
-           
+
 	}
 
 	@BeforeClass
@@ -40,7 +40,7 @@ public class BudgetUpdateTest0 {
 
 	@AfterClass
 	public static void tearDownClass() throws Exception {
-            
+
 	}
 
 	@Before
@@ -50,9 +50,9 @@ public class BudgetUpdateTest0 {
 	@After
 	public void tearDown() {
 	}
-        
+
         @Test
-    public static void main(String[] args) throws Exception {
+    public void main() throws Exception {
         WorkletContext context = WorkletContext.getInstance();
 
      	BudgetFactory bf = new BudgetFactory();

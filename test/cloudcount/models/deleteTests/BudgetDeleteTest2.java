@@ -51,7 +51,7 @@ public class BudgetDeleteTest2 {
      * @throws Exception
      */
     @Test
-    public static void main(String[] args) throws Exception {
+    public void main() throws Exception {
         WorkletContext context = WorkletContext.getInstance();
 
         BudgetFactory bf = new BudgetFactory();

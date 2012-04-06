@@ -19,7 +19,7 @@ import org.workplicity.worklet.WorkletContext;
  * @author joeycarmello
  */
 public class SublineCreateTest1 {
-    
+
     public SublineCreateTest1() {
     }
 
@@ -34,15 +34,15 @@ public class SublineCreateTest1 {
     @AfterClass
     public static void tearDownClass() throws Exception {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
-  
+
     /**
      * Tests that inserting a subline sets the new insert ID on the object
      *
@@ -50,7 +50,7 @@ public class SublineCreateTest1 {
      * @throws Exception
      */
     @Test
-    public static void main(String[] args) throws Exception {
+    public void main() throws Exception {
         WorkletContext context = WorkletContext.getInstance();
 
         SubLine sl = new SubLine();

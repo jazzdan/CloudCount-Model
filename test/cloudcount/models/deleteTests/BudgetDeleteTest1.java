@@ -52,7 +52,7 @@ public class BudgetDeleteTest1 {
      * @throws Exception
      */
     @Test
-    public static void main(String[] args) throws Exception {
+    public void main() throws Exception {
         BudgetFactory bf = new BudgetFactory();
         Budget b = (Budget) bf.create();
         b.setName("derp");

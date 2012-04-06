@@ -18,7 +18,7 @@ import org.workplicity.worklet.WorkletContext;
  * @author joeycarmello
  */
 public class LineCreateTest1 {
-    
+
     public LineCreateTest1() {
     }
 
@@ -33,15 +33,15 @@ public class LineCreateTest1 {
     @AfterClass
     public static void tearDownClass() throws Exception {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
-    
+
     /**
      * Tests that inserting a line sets the id of the line object to the new insert ID
      *
@@ -49,7 +49,7 @@ public class LineCreateTest1 {
      * @throws Exception
      */
     @Test
-    public static void main(String[] args) throws Exception {
+    public void main() throws Exception {
         WorkletContext context = WorkletContext.getInstance();
 
         Line l = new Line();

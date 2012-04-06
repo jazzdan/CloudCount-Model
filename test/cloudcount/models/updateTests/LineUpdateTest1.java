@@ -20,7 +20,7 @@ import org.workplicity.worklet.WorkletContext;
  * @author joeycarmello
  */
 public class LineUpdateTest1 {
-    
+
     public LineUpdateTest1() {
     }
 
@@ -35,17 +35,17 @@ public class LineUpdateTest1 {
     @AfterClass
     public static void tearDownClass() throws Exception {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
- 
+
     @Test
-    public static void main(String[] args) throws Exception {
+    public void main() throws Exception {
         WorkletContext context = WorkletContext.getInstance();
 
      	BudgetFactory bf = new BudgetFactory();

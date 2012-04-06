@@ -54,7 +54,7 @@ public class BudgetDeleteTest0 {
      * @throws Exception
      */
     @Test
-    public static void main(String[] args) throws Exception {
+    public void main() throws Exception {
         WorkletContext context = WorkletContext.getInstance();
 
         BudgetFactory bf = new BudgetFactory();
@@ -65,7 +65,7 @@ public class BudgetDeleteTest0 {
         Integer insertId = MongoHelper.insert(b, "ccmodel", b.getRepositoryName());
 
         Integer deleteId = MongoHelper.delete(b, "ccmodel", b.getRepositoryName());
-        
+
         assertEquals(deleteId, insertId);
     }
 }
