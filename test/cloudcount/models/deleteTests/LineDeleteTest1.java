@@ -7,6 +7,8 @@ package cloudcount.models.deleteTests;
 import cloudcount.models.Budget;
 import cloudcount.models.BudgetFactory;
 import cloudcount.models.Line;
+import com.mongodb.BasicDBObject;
+import java.util.ArrayList;
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.workplicity.task.NetTask;
@@ -18,7 +20,7 @@ import org.workplicity.worklet.WorkletContext;
  * @author joeycarmello
  */
 public class LineDeleteTest1 {
-    
+
     public LineDeleteTest1() {
     }
 
@@ -33,27 +35,39 @@ public class LineDeleteTest1 {
     @AfterClass
     public static void tearDownClass() throws Exception {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
-  
-    @Test
-        public static void main(String[] args) throws Exception {
-            WorkletContext context = WorkletContext.getInstance();
-        
-            BudgetFactory bf = new BudgetFactory();
-            Budget b = (Budget) bf.create();
-            b.setName("derp");
-            b.add(new Line());
 
-            Integer insertId = MongoHelper.insert(b, "ccmodel", b.getRepositoryName());
-            assertNotSame(insertId, Integer.valueOf(-1));
-            
-            MongoHelper.delete(b, "ccmodel", b.getRepositoryName());
-        }
+    /**
+     * Tests that delete actually removes a line since querying does not find
+     * the object
+     *
+     * @param args
+     * @throws Exception
+     */
+    @Test
+    public static void main(String[] args) throws Exception {
+        WorkletContext context = WorkletContext.getInstance();
+
+        Line l = new Line();
+        l.setNumber(1);
+
+        Integer insertId = MongoHelper.insert(l, "ccmodel", l.getRepositoryName());
+
+        BasicDBObject criteria = new BasicDBObject();
+        criteria.put("entry.id", insertId);
+        ArrayList items = MongoHelper.query(criteria, "ccmodel", l.getRepositoryName());
+
+        MongoHelper.delete(l, "ccmodel", l.getRepositoryName());
+
+        ArrayList items2 = MongoHelper.query(criteria, "ccmodel", l.getRepositoryName());
+
+        assertNotSame(items.size(), items2.size());
+    }
 }
