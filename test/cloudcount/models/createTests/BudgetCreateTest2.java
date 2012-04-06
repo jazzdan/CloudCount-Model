@@ -18,7 +18,7 @@ import org.workplicity.worklet.WorkletContext;
  * @author joeycarmello
  */
 public class BudgetCreateTest2 {
-    
+
     public BudgetCreateTest2() {
     }
 
@@ -33,27 +33,38 @@ public class BudgetCreateTest2 {
     @AfterClass
     public static void tearDownClass() throws Exception {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
 
+    /**
+     * Tests to make sure the budget ID is different each insert
+     * @param args
+     * @throws Exception
+     */
     @Test
-        public static void main(String[] args) throws Exception {
-            WorkletContext context = WorkletContext.getInstance();
-        
-            BudgetFactory bf = new BudgetFactory();
-            Budget b = (Budget) bf.create();
-            b.setName("derp");
-            b.add(new Line());
+    public static void main(String[] args) throws Exception {
+        WorkletContext context = WorkletContext.getInstance();
 
-            Integer insertId = MongoHelper.insert(b, "ccmodel", b.getRepositoryName());
-            assertNotSame(insertId, Integer.valueOf(-1));
-            
-            MongoHelper.delete(b, "ccmodel", b.getRepositoryName());
-        }
+        BudgetFactory bf = new BudgetFactory();
+        Budget b = (Budget) bf.create();
+        b.setName("derp");
+
+        Integer insertId = MongoHelper.insert(b, "ccmodel", b.getRepositoryName());
+        assertNotSame(insertId, Integer.valueOf(-1));
+        
+        Budget b2 = (Budget) bf.create();
+        b2.setName("derp2");
+
+        Integer insertId2 = MongoHelper.insert(b2, "ccmodel", b2.getRepositoryName());
+        assertNotSame(insertId, insertId2);
+
+        MongoHelper.delete(b, "ccmodel", b.getRepositoryName());
+        MongoHelper.delete(b2, "ccmodel", b2.getRepositoryName());
+    }
 }
