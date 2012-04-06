@@ -1,13 +1,17 @@
 package cloudcount.models;
 
+import cc.test.bridge.BridgeConstants.State;
 import cc.test.bridge.LineInterface;
 import cc.test.bridge.SublineInterface;
 import com.mongodb.BasicDBObject;
 import java.util.ArrayList;
 import java.util.Iterator;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.workplicity.entry.Entry;
 import org.workplicity.task.NetTask;
+import org.workplicity.util.Helper;
 import org.workplicity.util.MongoHelper;
+import org.workplicity.worklet.WorkletContext;
 
 /**
  *
@@ -15,10 +19,10 @@ import org.workplicity.util.MongoHelper;
  */
 public class Line extends Entry implements LineInterface {
 
-    public static final String REPOSITORY = "lines";
     private Integer budgetId = -1;
     private Integer number = -1;
     private String name = "n/a";
+    private ArrayList<SublineInterface> sublines = new ArrayList<SublineInterface>();
 
     /**
      * Default constructor
@@ -104,55 +108,88 @@ public class Line extends Entry implements LineInterface {
     }
 
     /**
+     * Commits this line without chance for abort. In other words, this is not a
+     * two-phase commit. This could leave the line in incoherent state.
      *
-     * @param si
-     */
-    @Override
-    public void add(SublineInterface si) {
-        SubLine subline = (SubLine) si;
-        subline.setParent(this);
-    }
-
-    /**
-     *
-     * @param si
-     */
-    @Override
-    public void delete(SublineInterface si) {
-        SubLine subline = (SubLine) si;
-        try {
-            subline = null;
-        } catch (Exception e) {
-            System.out.println("Failed to delete subline");
-        }
-    }
-
-    /**
-     *
-     * @return boolean for status of commit
+     * @return True if commit successful, false otherwise
      */
     @Override
     public Boolean commit() {
-        try {
-            ArrayList q = this.fetchSublines();
-            Iterator iterator = q.iterator();
-            while (iterator.hasNext()) {
-                SubLine l = (SubLine) iterator.next();
-                l.commit();
+        // If any of my sublines are in the hamper, commit them
+        Boolean commitMe = false;
+
+        for (SublineInterface subline : sublines) {
+            State state = BridgeHelper.getHamper().get(subline);
+
+            if (state != null) {
+                subline.commit();
+
+                if (state == State.DELETE) {
+                    sublines.remove(subline);
+                } else if (state == State.CREATE) {
+                    sublines.add(subline);
+                }
+
+                commitMe = true;
             }
-        } catch (Exception e) {
-            System.out.println(e);
-            return false;
         }
-        return true;
+
+        // If I'm not in the hamper AND all my sublines
+        // are clean, there's nothing more to do 
+        State myState = BridgeHelper.getHamper().get(this);
+
+        if (myState == null && commitMe == false) {
+            return true;
+        }
+
+        // Otherwise, update me
+        WorkletContext context = WorkletContext.getInstance();
+
+        Boolean successful = false;
+
+        if (myState == State.CREATE || myState == State.UPDATE) {
+            successful = Helper.insert(this, this.getRepositoryName(), context);
+        } else if (myState == State.DELETE) {
+            successful = Helper.delete(this, this.getRepositoryName(), context);
+        }
+
+        return successful;
+    }
+
+    /**
+     * Deletes a subline without committing it.
+     *
+     * @param subline Subline
+     */
+    @Override
+    public void delete(SublineInterface subline) {
+        // Put the subline in the hamper for delete
+        BridgeHelper.getHamper().put(subline, State.DELETE);
+
+        // Put me in the hamper for update
+        BridgeHelper.getHamper().put(this, State.UPDATE);
+    }
+
+    /**
+     * Adds a subline without committing it.
+     *
+     * @param subline Subline
+     */
+    @Override
+    public void add(SublineInterface subline) {
+        // Put the subline in the hamper for create
+        BridgeHelper.getHamper().put(subline, State.CREATE);
+
+        // Put me in the hamper for update
+        BridgeHelper.getHamper().put(this, State.UPDATE);
     }
 
     /**
      *
      * @return repositoryName
      */
-    @Override
+    @JsonIgnore
     public String getRepositoryName() {
-        return Line.REPOSITORY;
+        return "lines";
     }
 }

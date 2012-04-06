@@ -6,12 +6,10 @@ import cc.test.bridge.BridgeConstants.State;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.workplicity.entry.Entry;
 import org.workplicity.task.NetTask;
-import org.workplicity.util.Helper;
 import org.workplicity.util.MongoHelper;
-import org.workplicity.worklet.WorkletContext;
 
 /**
  *
@@ -19,7 +17,6 @@ import org.workplicity.worklet.WorkletContext;
  */
 public class Budget extends Entry implements BudgetInterface {
 
-    private final String repositoryName = "budgets";
     private String name;
     private String description;
     private ArrayList<NoteInterface> notes;
@@ -288,9 +285,9 @@ public class Budget extends Entry implements BudgetInterface {
 	 *
 	 * @return the repositoryName
 	 */
-	@Override
+    @JsonIgnore
     public String getRepositoryName() {
-        return repositoryName;
+        return "budgets";
     }
 
     /*

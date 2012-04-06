@@ -1,10 +1,12 @@
 package cloudcount.models;
 
+import cc.test.bridge.BridgeConstants.State;
 import cc.test.bridge.SublineInterface;
 import cc.test.bridge.TransactionInterface;
 import com.mongodb.BasicDBObject;
 import java.io.Serializable;
 import java.util.ArrayList;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.workplicity.entry.Entry;
 import org.workplicity.task.NetTask;
 import org.workplicity.util.Helper;
@@ -18,14 +20,10 @@ import org.workplicity.worklet.WorkletContext;
  */
 public class SubLine extends Entry implements Serializable, SublineInterface {
 
-    /**
-     *
-     */
-    public static final String REPOSITORY = "sub_lines";
-    private Integer subNumber;
-    private String name;
+    private Integer subNumber = -1;
+    private String name = "N/A";
     private Line parent;
-    private ArrayList<TransactionInterface> transactions;
+    private ArrayList<TransactionInterface> transactions = new ArrayList<TransactionInterface>();
 
     /**
      *
@@ -71,9 +69,9 @@ public class SubLine extends Entry implements Serializable, SublineInterface {
      *
      * @return repositoryName
      */
-    @Override
+    @JsonIgnore
     public String getRepositoryName() {
-        return SubLine.REPOSITORY;
+        return "sub_lines";
     }
 
     /**
@@ -119,7 +117,6 @@ public class SubLine extends Entry implements Serializable, SublineInterface {
     @Override
     public void add(TransactionInterface ti) {
         Transaction t = (Transaction) ti;
-        t.setName("test");
         transactions.add(t);
     }
 
@@ -131,6 +128,7 @@ public class SubLine extends Entry implements Serializable, SublineInterface {
     public void delete(TransactionInterface ti) {
         Transaction t = (Transaction) ti;
         transactions.remove(t);
+        BridgeHelper.getHamper().put(t,State.DELETE);
     }
 
     /**
@@ -139,17 +137,26 @@ public class SubLine extends Entry implements Serializable, SublineInterface {
      */
     @Override
     public Boolean commit() {
-        int lineResult;
-        int tResult;
-        try {
-            //TODO: Implement
-            lineResult = MongoHelper.insert(this, NetTask.getStoreName(), this.getRepositoryName());
-        } catch (Exception e) {
-            System.out.println(this.getClass().getName() + " with id:" + id + " has not been commited because of error" + e);
-            return false;
-        }
-        return (lineResult > -1) ? true : false;
+        State myState = BridgeHelper.getHamper().get(this);
 
+        if (myState == null)
+            return true;
+
+        for (TransactionInterface trans : transactions) {
+            State state = BridgeHelper.getHamper().get(trans);
+            
+            if (state != null) {
+                trans.commit();
+                
+                if(state == State.DELETE)
+                    transactions.remove(trans);
+                
+                else if(state == State.CREATE)
+                    transactions.add(trans);
+            }
+        }
+        
+        return true;
     }
 
     /**
