@@ -2,9 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package cloudcount.models;
+package cloudcount.models.deleteTests;
 
 import cc.test.bridge.BudgetInterface;
+import cloudcount.models.Budget;
+import cloudcount.models.BudgetFactory;
+import cloudcount.models.Line;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,9 +22,9 @@ import org.workplicity.worklet.WorkletContext;
  *
  * @author dan
  */
-public class BudgetFactoryTest {
+public class BudgetDeleteTest0 {
 
-	public BudgetFactoryTest() {
+	public BudgetDeleteTest0() {
            
 	}
 

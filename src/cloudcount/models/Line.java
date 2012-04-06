@@ -185,6 +185,25 @@ public class Line extends Entry implements LineInterface {
     }
 
     /**
+     * Gets all the sublines.
+     * @return 
+     */
+    public ArrayList<SublineInterface> getSublines() {
+        return sublines;
+    }
+
+    /**
+     * Sets the sublines and makes the line dirty.
+     * @param sublines Sublines
+     */
+    public void setSublines(ArrayList<SublineInterface> sublines) {
+        this.sublines = sublines;
+        
+        // Put me in the hamper for update
+        BridgeHelper.getHamper().put(this, State.UPDATE);         
+    }
+
+    /**
      *
      * @return repositoryName
      */

@@ -2,9 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package cloudcount.models;
+package cloudcount.models.readTests;
 
 import cc.test.bridge.BridgeConstants.Side;
+import cloudcount.models.Budget;
+import cloudcount.models.BudgetFactory;
+import cloudcount.models.Line;
 import com.mongodb.BasicDBObject;
 import java.util.ArrayList;
 import org.junit.After;
@@ -22,9 +25,9 @@ import org.workplicity.worklet.WorkletContext;
  *
  * @author dan
  */
-public class BudgetTest {
+public class BudgetReadTest0 {
 
-    public BudgetTest() {
+    public BudgetReadTest0() {
     }
 
     @BeforeClass
@@ -56,7 +59,7 @@ public class BudgetTest {
 		b.setName("derp");
         b.add(new Line());
 
-		Integer insertId = MongoHelper.insert(b, "ccmodel", b.getRepositoryName());
+	Integer insertId = MongoHelper.insert(b, "ccmodel", b.getRepositoryName());
 
         BasicDBObject criteria = new BasicDBObject();
 
