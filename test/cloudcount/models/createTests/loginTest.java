@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package cloudcount;
+package cloudcount.models.createTests;
 
 import org.workplicity.worklet.WorkletContext;
 import org.workplicity.task.NetTask;
