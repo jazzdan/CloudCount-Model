@@ -59,15 +59,18 @@ public class BudgetDeleteTest2 {
         b.setName("derp");
 
         Integer insertId = MongoHelper.insert(b, "ccmodel", b.getRepositoryName());
-        
+
         BasicDBObject criteria = new BasicDBObject();
         criteria.put("entry.id", insertId);
-        ArrayList items = MongoHelper.query(criteria, "ccmodel", b.getRepositoryName());
+        ArrayList items = MongoHelper.query(criteria, "ccmodel", b.getRepositoryName(), true);
+        Double count1 = (Double) items.get(0);
 
         MongoHelper.delete(b, "ccmodel", b.getRepositoryName());
 
-        ArrayList items2 = MongoHelper.query(criteria, "ccmodel", b.getRepositoryName());
+        ArrayList items2 = MongoHelper.query(criteria, "ccmodel", b.getRepositoryName(), true);
+        Double count2 = (Double) items2.get(0);
 
-        assertNotSame(items.size(), items2.size());
+        count1 -= 1;
+        assertEquals(count1, count2);
     }
 }
