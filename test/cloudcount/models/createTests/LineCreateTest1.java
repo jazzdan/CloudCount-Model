@@ -41,18 +41,23 @@ public class LineCreateTest1 {
     @After
     public void tearDown() {
     }
+    
+    /**
+     * Tests that inserting a line sets the id of the line object to the new insert ID
+     *
+     * @param args
+     * @throws Exception
+     */
     @Test
-        public static void main(String[] args) throws Exception {
-            WorkletContext context = WorkletContext.getInstance();
-        
-            BudgetFactory bf = new BudgetFactory();
-            Budget b = (Budget) bf.create();
-            b.setName("derp");
-            b.add(new Line());
+    public static void main(String[] args) throws Exception {
+        WorkletContext context = WorkletContext.getInstance();
 
-            Integer insertId = MongoHelper.insert(b, "ccmodel", b.getRepositoryName());
-            assertNotSame(insertId, Integer.valueOf(-1));
-            
-            MongoHelper.delete(b, "ccmodel", b.getRepositoryName());
-        }
+        Line l = new Line();
+        l.setNumber(2);
+
+        Integer insertId = MongoHelper.insert(l, "ccmodel", l.getRepositoryName());
+        assertEquals(insertId, l.getId());
+
+        MongoHelper.delete(l, "ccmodel", l.getRepositoryName());
+    }
 }

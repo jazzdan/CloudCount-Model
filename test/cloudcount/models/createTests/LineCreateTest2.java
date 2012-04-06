@@ -42,18 +42,29 @@ public class LineCreateTest2 {
     public void tearDown() {
     }
     
- @Test
-        public static void main(String[] args) throws Exception {
-            WorkletContext context = WorkletContext.getInstance();
-        
-            BudgetFactory bf = new BudgetFactory();
-            Budget b = (Budget) bf.create();
-            b.setName("derp");
-            b.add(new Line());
+    /**
+     * Tests that inserting two lines results in two separate IDs
+     *
+     * @param args
+     * @throws Exception
+     */
+    @Test
+    public static void main(String[] args) throws Exception {
+        WorkletContext context = WorkletContext.getInstance();
 
-            Integer insertId = MongoHelper.insert(b, "ccmodel", b.getRepositoryName());
-            assertNotSame(insertId, Integer.valueOf(-1));
-            
-            MongoHelper.delete(b, "ccmodel", b.getRepositoryName());
-        }
+        Line l = new Line();
+        l.setNumber(2);
+
+        Integer insertId = MongoHelper.insert(l, "ccmodel", l.getRepositoryName());
+        assertNotSame(insertId, Integer.valueOf(-1));
+        
+        Line l2 = new Line();
+        l2.setNumber(3);
+
+        Integer insertId2 = MongoHelper.insert(l2, "ccmodel", l2.getRepositoryName());
+        assertNotSame(insertId, insertId2);
+
+        MongoHelper.delete(l, "ccmodel", l.getRepositoryName());
+        MongoHelper.delete(l2, "ccmodel", l2.getRepositoryName());
+    }
 }

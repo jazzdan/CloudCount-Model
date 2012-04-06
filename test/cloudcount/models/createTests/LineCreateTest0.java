@@ -42,18 +42,21 @@ public class LineCreateTest0 {
     public void tearDown() {
     }
     
+    /**
+     * Tests that inserting a line results in an integer that is not -1 
+     * @param args
+     * @throws Exception 
+     */
     @Test
         public static void main(String[] args) throws Exception {
             WorkletContext context = WorkletContext.getInstance();
         
-            BudgetFactory bf = new BudgetFactory();
-            Budget b = (Budget) bf.create();
-            b.setName("derp");
-            b.add(new Line());
+            Line l = new Line();
+            l.setNumber(2);
 
-            Integer insertId = MongoHelper.insert(b, "ccmodel", b.getRepositoryName());
+            Integer insertId = MongoHelper.insert(l, "ccmodel", l.getRepositoryName());
             assertNotSame(insertId, Integer.valueOf(-1));
             
-            MongoHelper.delete(b, "ccmodel", b.getRepositoryName());
+            MongoHelper.delete(l, "ccmodel", l.getRepositoryName());
         }
 }
