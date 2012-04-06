@@ -50,7 +50,7 @@ public class BudgetCreateTest0 {
 	}
         
         @Test
-        public void testCreateBudgetItem() throws Exception {
+        public static void main(String[] args) throws Exception {
             WorkletContext context = WorkletContext.getInstance();
         
             BudgetFactory bf = new BudgetFactory();

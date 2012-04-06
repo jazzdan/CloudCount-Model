@@ -41,4 +41,9 @@ public class BudgetCreateTest1 {
     //
     // @Test
     // public void hello() {}
+    
+    public static void main(String[] args) throws Exception {
+        
+    
+    }
 }
