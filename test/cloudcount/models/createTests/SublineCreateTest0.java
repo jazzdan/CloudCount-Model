@@ -7,6 +7,7 @@ package cloudcount.models.createTests;
 import cloudcount.models.Budget;
 import cloudcount.models.BudgetFactory;
 import cloudcount.models.Line;
+import cloudcount.models.SubLine;
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.workplicity.task.NetTask;
@@ -42,18 +43,22 @@ public class SublineCreateTest0 {
     public void tearDown() {
     }
     
+    /**
+     * Tests that inserting a subline results in an integer that is not -1
+     *
+     * @param args
+     * @throws Exception
+     */
     @Test
-        public static void main(String[] args) throws Exception {
-            WorkletContext context = WorkletContext.getInstance();
-        
-            BudgetFactory bf = new BudgetFactory();
-            Budget b = (Budget) bf.create();
-            b.setName("derp");
-            b.add(new Line());
+    public static void main(String[] args) throws Exception {
+        WorkletContext context = WorkletContext.getInstance();
 
-            Integer insertId = MongoHelper.insert(b, "ccmodel", b.getRepositoryName());
-            assertNotSame(insertId, Integer.valueOf(-1));
-            
-            MongoHelper.delete(b, "ccmodel", b.getRepositoryName());
-        }
+        SubLine sl = new SubLine();
+        sl.setSubNumber(1);
+
+        Integer insertId = MongoHelper.insert(sl, "ccmodel", sl.getRepositoryName());
+        assertNotSame(insertId, Integer.valueOf(-1));
+
+        MongoHelper.delete(sl, "ccmodel", sl.getRepositoryName());
+    }
 }

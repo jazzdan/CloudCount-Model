@@ -18,7 +18,7 @@ import org.workplicity.worklet.WorkletContext;
  * @author joeycarmello
  */
 public class LineCreateTest0 {
-    
+
     public LineCreateTest0() {
     }
 
@@ -33,30 +33,31 @@ public class LineCreateTest0 {
     @AfterClass
     public static void tearDownClass() throws Exception {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
-    
+
     /**
-     * Tests that inserting a line results in an integer that is not -1 
+     * Tests that inserting a line results in an integer that is not -1
+     *
      * @param args
-     * @throws Exception 
+     * @throws Exception
      */
     @Test
-        public static void main(String[] args) throws Exception {
-            WorkletContext context = WorkletContext.getInstance();
-        
-            Line l = new Line();
-            l.setNumber(2);
+    public static void main(String[] args) throws Exception {
+        WorkletContext context = WorkletContext.getInstance();
 
-            Integer insertId = MongoHelper.insert(l, "ccmodel", l.getRepositoryName());
-            assertNotSame(insertId, Integer.valueOf(-1));
-            
-            MongoHelper.delete(l, "ccmodel", l.getRepositoryName());
-        }
+        Line l = new Line();
+        l.setNumber(2);
+
+        Integer insertId = MongoHelper.insert(l, "ccmodel", l.getRepositoryName());
+        assertNotSame(insertId, Integer.valueOf(-1));
+
+        MongoHelper.delete(l, "ccmodel", l.getRepositoryName());
+    }
 }

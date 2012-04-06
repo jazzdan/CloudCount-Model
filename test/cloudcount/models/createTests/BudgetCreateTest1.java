@@ -44,8 +44,9 @@ public class BudgetCreateTest1 {
 
     /**
      * Tests that insert returns the actual budget object's ID
+     *
      * @param args
-     * @throws Exception 
+     * @throws Exception
      */
     @Test
     public static void main(String[] args) throws Exception {
@@ -54,7 +55,6 @@ public class BudgetCreateTest1 {
         BudgetFactory bf = new BudgetFactory();
         Budget b = (Budget) bf.create();
         b.setName("derp");
-        b.add(new Line());
 
         Integer insertId = MongoHelper.insert(b, "ccmodel", b.getRepositoryName());
         assertEquals(insertId, b.getId());
