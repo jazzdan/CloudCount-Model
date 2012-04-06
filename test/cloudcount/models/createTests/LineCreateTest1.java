@@ -4,9 +4,14 @@
  */
 package cloudcount.models.createTests;
 
+import cloudcount.models.Budget;
+import cloudcount.models.BudgetFactory;
+import cloudcount.models.Line;
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.workplicity.task.NetTask;
+import org.workplicity.util.MongoHelper;
+import org.workplicity.worklet.WorkletContext;
 
 /**
  *
@@ -36,9 +41,18 @@ public class LineCreateTest1 {
     @After
     public void tearDown() {
     }
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Test
+        public static void main(String[] args) throws Exception {
+            WorkletContext context = WorkletContext.getInstance();
+        
+            BudgetFactory bf = new BudgetFactory();
+            Budget b = (Budget) bf.create();
+            b.setName("derp");
+            b.add(new Line());
+
+            Integer insertId = MongoHelper.insert(b, "ccmodel", b.getRepositoryName());
+            assertNotSame(insertId, Integer.valueOf(-1));
+            
+            MongoHelper.delete(b, "ccmodel", b.getRepositoryName());
+        }
 }

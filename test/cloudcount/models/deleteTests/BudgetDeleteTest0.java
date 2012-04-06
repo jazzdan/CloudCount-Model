@@ -49,8 +49,8 @@ public class BudgetDeleteTest0 {
 	public void tearDown() {
 	}
         
-        @Test
-        public void testCreateBudgetItem() throws Exception {
+      @Test
+        public static void main(String[] args) throws Exception {
             WorkletContext context = WorkletContext.getInstance();
         
             BudgetFactory bf = new BudgetFactory();

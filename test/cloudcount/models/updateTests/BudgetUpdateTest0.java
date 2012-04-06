@@ -8,6 +8,8 @@ import cc.test.bridge.BudgetInterface;
 import cloudcount.models.Budget;
 import cloudcount.models.BudgetFactory;
 import cloudcount.models.Line;
+import com.mongodb.BasicDBObject;
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -50,17 +52,26 @@ public class BudgetUpdateTest0 {
 	}
         
         @Test
-        public void testCreateBudgetItem() throws Exception {
-            WorkletContext context = WorkletContext.getInstance();
-        
-            BudgetFactory bf = new BudgetFactory();
-            Budget b = (Budget) bf.create();
-            b.setName("derp");
-            b.add(new Line());
+    public static void main(String[] args) throws Exception {
+        WorkletContext context = WorkletContext.getInstance();
 
-            Integer insertId = MongoHelper.insert(b, "ccmodel", b.getRepositoryName());
-            assertNotSame(insertId, Integer.valueOf(-1));
-            
-            MongoHelper.delete(b, "ccmodel", b.getRepositoryName());
-        }
+     	BudgetFactory bf = new BudgetFactory();
+		Budget b = (Budget) bf.create();
+		b.setName("derp");
+        b.add(new Line());
+
+	Integer insertId = MongoHelper.insert(b, "ccmodel", b.getRepositoryName());
+
+        BasicDBObject criteria = new BasicDBObject();
+
+        criteria.put("entry.id", insertId);
+
+        ArrayList items = MongoHelper.query(criteria, "ccmodel", "budgets");
+
+        assertEquals(items.size(), 1);
+
+        assertEquals(((Budget)items.get(0)).getName(), "derp");
+
+        MongoHelper.delete(b, "ccmodel", b.getRepositoryName());
+    }
 }
