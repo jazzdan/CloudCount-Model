@@ -20,7 +20,7 @@ import org.workplicity.worklet.WorkletContext;
  * @author joeycarmello
  */
 public class BudgetReadTest1 {
-    
+
     public BudgetReadTest1() {
     }
 
@@ -35,25 +35,25 @@ public class BudgetReadTest1 {
     @AfterClass
     public static void tearDownClass() throws Exception {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
-    
+
     @Test
     public static void main(String[] args) throws Exception {
         WorkletContext context = WorkletContext.getInstance();
 
-     	BudgetFactory bf = new BudgetFactory();
-		Budget b = (Budget) bf.create();
-		b.setName("derp");
+        BudgetFactory bf = new BudgetFactory();
+        Budget b = (Budget) bf.create();
+        b.setName("derp");
         b.add(new Line());
 
-	Integer insertId = MongoHelper.insert(b, "ccmodel", b.getRepositoryName());
+        Integer insertId = MongoHelper.insert(b, "ccmodel", b.getRepositoryName());
 
         BasicDBObject criteria = new BasicDBObject();
 
@@ -63,7 +63,7 @@ public class BudgetReadTest1 {
 
         assertEquals(items.size(), 1);
 
-        assertEquals(((Budget)items.get(0)).getName(), "derp");
+        assertEquals(((Budget) items.get(0)).getName(), "derp");
 
         MongoHelper.delete(b, "ccmodel", b.getRepositoryName());
     }

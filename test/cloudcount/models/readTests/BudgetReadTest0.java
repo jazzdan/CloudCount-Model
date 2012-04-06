@@ -50,6 +50,11 @@ public class BudgetReadTest0 {
     public void tearDown() {
     }
 
+    /**
+     * Tests that we can read a Budget by ID after it has been created
+     * @param args
+     * @throws Exception 
+     */
     @Test
     public static void main(String[] args) throws Exception {
         WorkletContext context = WorkletContext.getInstance();
