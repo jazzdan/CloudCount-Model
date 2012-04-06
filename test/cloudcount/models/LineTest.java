@@ -93,30 +93,15 @@ public class LineTest {
 		}
 
 		/**
-		 * Test of getName method, of class Line.
-		 */
-		@Test
-		public void testGetName() {
-				System.out.println("getName");
-				Line instance = new Line();
-				String expResult = "";
-				String result = instance.getName();
-				assertEquals(expResult, result);
-				// TODO review the generated test code and remove the default call to fail.
-				fail("The test case is a prototype.");
-		}
-
-		/**
 		 * Test of setName method, of class Line.
 		 */
 		@Test
 		public void testSetName() {
 				System.out.println("setName");
-				String name = "";
+				String name = "derp";
 				Line instance = new Line();
 				instance.setName(name);
-				// TODO review the generated test code and remove the default call to fail.
-				fail("The test case is a prototype.");
+				assertEquals(instance.getName(), name);
 		}
 
 		/**
@@ -129,8 +114,6 @@ public class LineTest {
 				ArrayList expResult = null;
 				ArrayList result = instance.fetchSublines();
 				assertEquals(expResult, result);
-				// TODO review the generated test code and remove the default call to fail.
-				fail("The test case is a prototype.");
 		}
 
 		/**
@@ -169,8 +152,6 @@ public class LineTest {
 				SublineInterface si = null;
 				Line instance = new Line();
 				instance.delete(si);
-				// TODO review the generated test code and remove the default call to fail.
-				fail("The test case is a prototype.");
 		}
 
 		/**
@@ -180,11 +161,10 @@ public class LineTest {
 		public void testCommit() {
 				System.out.println("commit");
 				Line instance = new Line();
-				Boolean expResult = null;
+				instance.setName("derp");
+				Boolean expResult = true;
 				Boolean result = instance.commit();
 				assertEquals(expResult, result);
-				// TODO review the generated test code and remove the default call to fail.
-				fail("The test case is a prototype.");
 		}
 
 		/**
@@ -194,10 +174,8 @@ public class LineTest {
 		public void testGetRepositoryName() {
 				System.out.println("getRepositoryName");
 				Line instance = new Line();
-				String expResult = "";
+				String expResult = "lines";
 				String result = instance.getRepositoryName();
 				assertEquals(expResult, result);
-				// TODO review the generated test code and remove the default call to fail.
-				fail("The test case is a prototype.");
 		}
 }
