@@ -49,6 +49,11 @@ public class BudgetCreateTest0 {
 	public void tearDown() {
 	}
         
+        /**
+         * Tests that insert returns a non-negative -1 value 
+         * @param args
+         * @throws Exception 
+         */
         @Test
         public static void main(String[] args) throws Exception {
             WorkletContext context = WorkletContext.getInstance();

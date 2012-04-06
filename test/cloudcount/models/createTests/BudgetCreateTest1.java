@@ -42,6 +42,11 @@ public class BudgetCreateTest1 {
     public void tearDown() {
     }
 
+    /**
+     * Tests that insert returns the actual budget object's ID
+     * @param args
+     * @throws Exception 
+     */
     @Test
     public static void main(String[] args) throws Exception {
         WorkletContext context = WorkletContext.getInstance();
@@ -52,7 +57,7 @@ public class BudgetCreateTest1 {
         b.add(new Line());
 
         Integer insertId = MongoHelper.insert(b, "ccmodel", b.getRepositoryName());
-        assertNotSame(insertId, Integer.valueOf(-1));
+        assertEquals(insertId, b.getId());
 
         MongoHelper.delete(b, "ccmodel", b.getRepositoryName());
     }
