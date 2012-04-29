@@ -53,9 +53,9 @@ public class massCreateBudgetTest {
 				WorkletContext context = WorkletContext.getInstance();
 				BudgetFactory bf = new BudgetFactory();
 
-				System.out.println("Adding 100 budgets");
+				System.out.println("Adding 1000 budgets");
 
-				for(int i=0; i<99; i++){
+				for(int i=0; i<999; i++){
 						Budget b = (Budget) bf.create();
 						b.setName("derp" + i);
 						b.add(new Line());
@@ -63,10 +63,10 @@ public class massCreateBudgetTest {
 						assertNotSame(insertId, Integer.valueOf(-1));
 				}
 
-				System.err.println("100 Budgets added. Deleting budgets (JUST KIDDING NOT REALLY)");
+				System.err.println("1000 Budgets added. Deleting budgets (JUST KIDDING NOT REALLY)");
 
-				for(int i=0; i<99; i++){
+				/*for(int i=0; i<999; i++){
 						//TODO: Delete everything in the repository
-				}
+				}*/
 		}
 }
