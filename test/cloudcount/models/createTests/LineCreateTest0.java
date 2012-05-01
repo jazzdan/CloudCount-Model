@@ -59,5 +59,6 @@ public class LineCreateTest0 {
         assertNotSame(insertId, Integer.valueOf(-1));
 
         MongoHelper.delete(l, "ccmodel", l.getRepositoryName());
+
     }
 }
