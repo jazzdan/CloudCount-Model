@@ -19,9 +19,9 @@ import org.workplicity.worklet.WorkletContext;
  *
  * @author dan
  */
-public class massCreateLineTest {
+public class MassCreateLineTest {
 
-		public massCreateLineTest() {
+		public MassCreateLineTest() {
 		}
 
 		@BeforeClass

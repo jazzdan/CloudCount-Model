@@ -21,9 +21,9 @@ import org.workplicity.worklet.WorkletContext;
  *
  * @author dan
  */
-public class massCreateBudgetTest {
+public class MassCreateBudgetTest {
 
-		public massCreateBudgetTest() {
+		public MassCreateBudgetTest() {
 		}
 
 		@BeforeClass
