@@ -1,11 +1,9 @@
-	/*
+/*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 package cloudcount.models.specialTests;
 
-import cloudcount.models.Budget;
-import cloudcount.models.BudgetFactory;
 import cloudcount.models.Line;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -21,9 +19,9 @@ import org.workplicity.worklet.WorkletContext;
  *
  * @author dan
  */
-public class MassCreateBudgetTest {
+public class MassCreateLineTest {
 
-		public MassCreateBudgetTest() {
+		public MassCreateLineTest() {
 		}
 
 		@BeforeClass
@@ -49,24 +47,14 @@ public class MassCreateBudgetTest {
 		// The methods must be annotated with annotation @Test. For example:
 		//
 		@Test
-		public void main() throws Exception {
-				WorkletContext context = WorkletContext.getInstance();
-				BudgetFactory bf = new BudgetFactory();
+		public void main() throws Exception{
+			WorkletContext context = WorkletContext.getInstance();
 
-				System.out.println("Adding 1000 budgets");
-
-				for(int i=0; i<999; i++){
-						Budget b = (Budget) bf.create();
-						b.setName("derp" + i);
-						b.add(new Line());
-						Integer insertId = MongoHelper.insert(b, "ccmodel", b.getRepositoryName());
-						assertNotSame(insertId, Integer.valueOf(-1));
-				}
-
-				System.err.println("1000 Budgets added. Deleting budgets...");
-
-				for(int i=0; i<999; i++){
-						//TODO: Delete everything in the repository
-				}
+			for(int i=0; i>999; i++){
+					Line l = new Line();
+					l.setNumber(i);
+					Integer insertId = MongoHelper.insert(l, "ccmodel", l.getRepositoryName());
+					assertNotNull(insertId);
+			}
 		}
 }

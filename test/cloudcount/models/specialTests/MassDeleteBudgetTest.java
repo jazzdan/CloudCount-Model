@@ -3,13 +3,18 @@
  * and open the template in the editor.
  */
 package cloudcount.models.specialTests;
-
+import cloudcount.models.Budget;
+import cloudcount.models.BudgetFactory;
+import cloudcount.models.Line;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.workplicity.task.NetTask;
+import org.workplicity.util.MongoHelper;
+import org.workplicity.worklet.WorkletContext;
 
 /**
  *
@@ -18,6 +23,10 @@ import static org.junit.Assert.*;
 public class MassDeleteBudgetTest {
 
 		public MassDeleteBudgetTest() {
+			String url = "http://localhost:8080/netprevayle/task";
+			String name = "ccmodel";
+			NetTask.setUrlBase(url);
+			NetTask.setStoreName(name);
 		}
 
 		@BeforeClass
@@ -38,6 +47,8 @@ public class MassDeleteBudgetTest {
 		// TODO add test methods here.
 		// The methods must be annotated with annotation @Test. For example:
 		//
-		// @Test
-		// public void hello() {}
+		@Test
+		public void main() {
+
+		}
 }
