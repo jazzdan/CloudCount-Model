@@ -50,7 +50,7 @@ public class MassCreateSublineTest {
 		public void main() throws Exception {
 			WorkletContext context = WorkletContext.getInstance();
 
-			for(int i=0; i>999; i++){
+			for(int i=0; i>99; i++){
 				SubLine sl = new SubLine();
 				sl.setSubNumber(i);
 				Integer insertId = MongoHelper.insert(sl, "ccmodel", sl.getRepositoryName());

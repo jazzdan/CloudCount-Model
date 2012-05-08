@@ -50,7 +50,7 @@ public class MassCreateLineTest {
 		public void main() throws Exception{
 			WorkletContext context = WorkletContext.getInstance();
 
-			for(int i=0; i>999; i++){
+			for(int i=0; i>99; i++){
 					Line l = new Line();
 					l.setNumber(i);
 					Integer insertId = MongoHelper.insert(l, "ccmodel", l.getRepositoryName());

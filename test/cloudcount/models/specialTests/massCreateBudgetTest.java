@@ -55,7 +55,7 @@ public class MassCreateBudgetTest {
 
 				System.out.println("Adding 1000 budgets");
 
-				for(int i=0; i<999; i++){
+				for(int i=0; i<99; i++){
 						Budget b = (Budget) bf.create();
 						b.setName("derp" + i);
 						b.add(new Line());
