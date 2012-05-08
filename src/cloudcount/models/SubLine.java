@@ -144,18 +144,18 @@ public class SubLine extends Entry implements Serializable, SublineInterface {
 
         for (TransactionInterface trans : transactions) {
             State state = BridgeHelper.getHamper().get(trans);
-            
+
             if (state != null) {
                 trans.commit();
-                
+
                 if(state == State.DELETE)
                     transactions.remove(trans);
-                
+
                 else if(state == State.CREATE)
                     transactions.add(trans);
             }
         }
-        
+
         return true;
     }
 
@@ -163,8 +163,8 @@ public class SubLine extends Entry implements Serializable, SublineInterface {
      *
      * @return subNumber
      */
-    @Override
+/*    @Override
     public Integer getId() {
         return subNumber;
-    }
+    }*/
 }
